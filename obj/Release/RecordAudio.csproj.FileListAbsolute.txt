@@ -1,0 +1,11 @@
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Release\RavenRecord.dll
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Release\RavenRecord.RavenRecord.apk
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Release\RavenRecord.RavenRecord-Signed.apk
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\RavenRecord.dll
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\android\bin\RavenRecord.RavenRecord.apk
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\res\layout\main.xml
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\res\values\strings.xml
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\R.cs.flag
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\uploadflags.txt
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\RavenRecord.dll.mdb
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Release\RavenRecord.dll.mdb
