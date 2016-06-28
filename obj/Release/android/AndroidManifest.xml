@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="RavenRecord.RavenRecord" android:installLocation="auto">
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <application android:label="RavenRecord" android:name="android.app.Application" android:allowBackup="true">
-    <activity android:label="RecordAudio" android:name="md5ac418dee2f4d3e75f182b4c035f21739.Activity1">
+  <application android:label="RavenRecord" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/ribbonmicpurple">
+    <activity android:icon="@drawable/ribbonmicpurple" android:label="Raven Record" android:name="md5ac418dee2f4d3e75f182b4c035f21739.Activity1">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

@@ -11,6 +11,9 @@ using System.IO;
 using System.Timers;
 using RavenRecord;
 using Android.Provider;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RecordAudio
 {
@@ -25,7 +28,7 @@ namespace RecordAudio
         ListView listView;
         Timer aTimer;
         Int16 intCounter= 0;
-        string[] items;
+        IList<FileSystemInfo> files;
         string recordFolder = "/sdcard/ravenrecord/";
         string recordFile;
 
@@ -34,15 +37,14 @@ namespace RecordAudio
             base.OnCreate (bundle);
 
             SetContentView (Resource.Layout.Main);
-
-            items = new string[] { "Vegetables", "Fruits", "Flower Buds", "Legumes", "Bulbs", "Tubers" };
-
+                        
             SetDisplay();
             UpdateDisplay("Ready");
             CreateDirectory(recordFolder);
 
             BindUI();
-            
+            RefreshFiles();
+
         }
 
         protected void BindUI()
@@ -53,7 +55,16 @@ namespace RecordAudio
 
             stop.Click += delegate {
                 StopRecord();
+                RefreshFiles();
             };
+
+            listView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
+            {
+                string fileSelected = listView.GetItemAtPosition(e.Position).ToString();
+                PlayFile(fileSelected);
+                Toast.MakeText(this, fileSelected, Android.Widget.ToastLength.Short).Show();
+            };
+            
         }
 
         protected void SetDisplay()
@@ -61,15 +72,21 @@ namespace RecordAudio
             start = FindViewById<Button>(Resource.Id.start);
             stop = FindViewById<Button>(Resource.Id.stop);
             counter = FindViewById<TextView>(Resource.Id.counter);
-
             listView = FindViewById<ListView>(Resource.Id.listView);
-            listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, items);
+            listView.FastScrollEnabled = true;
 
         }
+
+        protected void RefreshFiles()
+        {
+            files = GetFiles(recordFolder);
+            listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, GetFileNames(files));
+        }
+
         protected void StartRecord()
         {
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-            recordFile = recordFolder + "/" + unixTimestamp.ToString() + ".mp3";
+            string fileName = DateTime.Now.ToString("MM-dd-yyyy-HHmmss");            
+            recordFile = fileName + ".mp3";
 
             stop.Enabled = !stop.Enabled;
             start.Enabled = !start.Enabled;
@@ -83,7 +100,7 @@ namespace RecordAudio
             recorder.SetAudioSource(AudioSource.Mic);
             recorder.SetOutputFormat(OutputFormat.Mpeg4);
             recorder.SetAudioEncoder(AudioEncoder.AmrNb);
-            recorder.SetOutputFile(recordFile);
+            recorder.SetOutputFile(recordFolder + "/" + recordFile);
             recorder.Prepare();
             recorder.Start();
 
@@ -92,22 +109,35 @@ namespace RecordAudio
         protected void StopRecord()
         {
             stop.Enabled = !stop.Enabled;
+            start.Enabled = !start.Enabled;
+
             aTimer.Stop();
-            UpdateDisplay("Recording Stopped. Playing Back...");
+            UpdateDisplay("Recording Stopped.");
 
             recorder.Stop();
             recorder.Reset();
-
-            PlayFile(recordFile);
-
         }
 
-        protected void PlayFile(string filePath)
+        protected void PlayFile(string fileName)
         {
-            player.SetDataSource(filePath);
+
+            //Have to get actual file from file system
+
+            string[] audioFile = fileName.Split('|');
+            string theFile = audioFile[0].Trim();
+            string fileLocation = recordFolder + theFile;
+            
+            if (player.IsPlaying)
+            {
+                player.Stop();
+                player.Reset();
+            }
+            
+            player.SetDataSource(fileLocation);
             player.Prepare();
             player.Start();
 
+            UpdateDisplay("Playing " + fileName);
         }
 
         protected void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -131,7 +161,6 @@ namespace RecordAudio
          
             player.Completion += (sender, e) => {
                 player.Reset ();
-                start.Enabled = !start.Enabled;
             };
         }
 
@@ -148,14 +177,53 @@ namespace RecordAudio
             recorder = null;
         }
 
+        protected string[] GetFileNames(IList<FileSystemInfo> files)
+        {
+            string[] fileNames = new string[files.Count];
+        
+            for (int i = 0; i <= fileNames.Length-1; i++)
+            {               
+                fileNames[i] = files[i].Name + "    |    " + GetTrackDuration(files[i].FullName);
+            }
+
+            return fileNames;
+        }
+
+        public string GetTrackDuration(string filePath)
+        {
+            MediaMetadataRetriever metaRetriever = new MediaMetadataRetriever();
+            metaRetriever.SetDataSource(filePath);           
+            string duration = metaRetriever.ExtractMetadata(MetadataKey.Duration);
+            metaRetriever.Release();
+
+            TimeSpan t = TimeSpan.FromMilliseconds(Convert.ToDouble(duration));
+            //duration = string.Format("{0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+
+            //only need minutes seconds for now
+            duration = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
+
+            return duration;
+        }
+
+        protected IList<FileSystemInfo> GetFiles(string directoryName)
+        {
+            IList<FileSystemInfo> visibleThings = new List<FileSystemInfo>();
+            var dir = new DirectoryInfo(directoryName);
+
+            foreach (var item in dir.GetFileSystemInfos().Where(item => item.Exists))
+            {
+                visibleThings.Add(item);
+            }
+
+            return visibleThings;
+        }
+
         void CreateDirectory(string directoryName)
         {
             bool directoryExists = Directory.Exists(directoryName);
-
             if (!directoryExists)
             {
                 var directoryUri = Directory.CreateDirectory(directoryName);
-
 
                 if (directoryUri != null)
                 {
@@ -172,7 +240,7 @@ namespace RecordAudio
                 Toast.MakeText(this, string.Format("Directory already Exists! [{0}] : ",
                         directoryName), ToastLength.Short).Show();
             }
-        }
+        }        
     }
 }
 
