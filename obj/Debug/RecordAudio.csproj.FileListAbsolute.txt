@@ -11,6 +11,7 @@ C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\r
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\res\drawable\ribbonmicpurple.png
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\R.cs.flag
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\uploadflags.txt
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\RecordAudio.csprojResolveAssemblyReference.cache
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Debug\RavenRecord.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Debug\Java.Interop.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Debug\Mono.Android.dll.mdb
@@ -33,6 +34,5 @@ C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\a
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\System.Xml.dll.mdb
-C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\RecordAudio.csprojResolveAssemblyReference.cache
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\RavenRecord.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Debug\RavenRecord.dll.mdb

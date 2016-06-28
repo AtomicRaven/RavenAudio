@@ -26,6 +26,8 @@ namespace RecordAudio
         Timer aTimer;
         Int16 intCounter= 0;
         string[] items;
+        string recordFolder = "/sdcard/ravenrecord/";
+        string recordFile;
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -35,61 +37,89 @@ namespace RecordAudio
 
             items = new string[] { "Vegetables", "Fruits", "Flower Buds", "Legumes", "Bulbs", "Tubers" };
 
-            string recordFolder = "/sdcard/ravenrecord/";
-
-            start = FindViewById<Button> (Resource.Id.start);
-            stop = FindViewById<Button> (Resource.Id.stop);
-            counter = FindViewById<TextView>(Resource.Id.counter);
-
-            listView = FindViewById<ListView>(Resource.Id.listView);           
-            listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, items);
-
-            counter.Text = "Ready";
-
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            SetDisplay();
+            UpdateDisplay("Ready");
             CreateDirectory(recordFolder);
 
-            string path = recordFolder + "/" + unixTimestamp.ToString() + ".mp3";
-         
+            BindUI();
+            
+        }
+
+        protected void BindUI()
+        {
             start.Click += delegate {
-                stop.Enabled = !stop.Enabled;
-                start.Enabled = !start.Enabled;
-                
-                aTimer = new Timer();
-                aTimer.Interval = 1000;
-                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Enabled = true;
-                aTimer.Start();
-
-                recorder.SetAudioSource (AudioSource.Mic);      
-                recorder.SetOutputFormat (OutputFormat.Mpeg4);            
-                recorder.SetAudioEncoder (AudioEncoder.AmrNb);           
-                recorder.SetOutputFile (path);
-                recorder.Prepare ();               
-                recorder.Start ();
-
+                StartRecord();
             };
-         
+
             stop.Click += delegate {
-                stop.Enabled = !stop.Enabled;
+                StopRecord();
+            };
+        }
 
-                aTimer.Stop();
-                RunOnUiThread(() => counter.Text = "Recording Stopped. Playing Back...");
+        protected void SetDisplay()
+        {
+            start = FindViewById<Button>(Resource.Id.start);
+            stop = FindViewById<Button>(Resource.Id.stop);
+            counter = FindViewById<TextView>(Resource.Id.counter);
 
-                recorder.Stop ();
-                recorder.Reset ();               
+            listView = FindViewById<ListView>(Resource.Id.listView);
+            listView.Adapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, items);
 
-                player.SetDataSource (path);
-                player.Prepare ();
-                player.Start ();
-            };       
+        }
+        protected void StartRecord()
+        {
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            recordFile = recordFolder + "/" + unixTimestamp.ToString() + ".mp3";
+
+            stop.Enabled = !stop.Enabled;
+            start.Enabled = !start.Enabled;
+
+            aTimer = new Timer();
+            aTimer.Interval = 1000;
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Enabled = true;
+            aTimer.Start();
+
+            recorder.SetAudioSource(AudioSource.Mic);
+            recorder.SetOutputFormat(OutputFormat.Mpeg4);
+            recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+            recorder.SetOutputFile(recordFile);
+            recorder.Prepare();
+            recorder.Start();
+
+        }
+
+        protected void StopRecord()
+        {
+            stop.Enabled = !stop.Enabled;
+            aTimer.Stop();
+            UpdateDisplay("Recording Stopped. Playing Back...");
+
+            recorder.Stop();
+            recorder.Reset();
+
+            PlayFile(recordFile);
+
+        }
+
+        protected void PlayFile(string filePath)
+        {
+            player.SetDataSource(filePath);
+            player.Prepare();
+            player.Start();
+
         }
 
         protected void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             intCounter++;
-            RunOnUiThread(() => counter.Text = "Recording: " + intCounter.ToString() + " seconds");  
+            UpdateDisplay("Recording: " + intCounter.ToString() + " seconds");  
 
+        }
+
+        protected void UpdateDisplay(string msg)
+        {
+            RunOnUiThread(() => counter.Text = msg);
         }
 
         protected override void OnResume ()
