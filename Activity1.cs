@@ -101,6 +101,7 @@ namespace RecordAudio
             recorder.SetOutputFormat(OutputFormat.Mpeg4);
             recorder.SetAudioEncoder(AudioEncoder.AmrNb);
             recorder.SetOutputFile(recordFolder + "/" + recordFile);
+
             recorder.Prepare();
             recorder.Start();
 
@@ -150,6 +151,11 @@ namespace RecordAudio
         protected void UpdateDisplay(string msg)
         {
             RunOnUiThread(() => counter.Text = msg);
+        }
+
+        public void OnError(MediaRecorder mr, [Android.Runtime.GeneratedEnum] MediaRecorderError what, Int32 extra)
+        {
+
         }
 
         protected override void OnResume ()
