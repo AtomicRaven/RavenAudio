@@ -1,1 +1,1 @@
-<resources><string name="app_name">RecordAudio</string></resources>
+<resources><string name="app_name">RecordAudio</string><string name="link_button">Link to Dropbox!</string><string name="clear_button">Clear cache</string><string name="image_list">Images in Dropbox</string></resources>

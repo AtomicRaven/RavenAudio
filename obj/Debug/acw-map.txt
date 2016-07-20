@@ -1,4 +1,8 @@
-RecordAudio.Activity1, RavenRecord;md5ac418dee2f4d3e75f182b4c035f21739.Activity1
-RecordAudio.Activity1, RavenRecord, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ac418dee2f4d3e75f182b4c035f21739.Activity1
-RecordAudio.Activity1;md5ac418dee2f4d3e75f182b4c035f21739.Activity1
-recordaudio.Activity1;md5ac418dee2f4d3e75f182b4c035f21739.Activity1
+RavenRecord.PlayViewActivity, RavenRecord;md51713ece041de583556237be29d20e52c.PlayViewActivity
+RavenRecord.PlayViewActivity, RavenRecord, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md51713ece041de583556237be29d20e52c.PlayViewActivity
+RavenRecord.PlayViewActivity;md51713ece041de583556237be29d20e52c.PlayViewActivity
+ravenrecord.PlayViewActivity;md51713ece041de583556237be29d20e52c.PlayViewActivity
+RecordAudio.MainActivity, RavenRecord;md5ac418dee2f4d3e75f182b4c035f21739.MainActivity
+RecordAudio.MainActivity, RavenRecord, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ac418dee2f4d3e75f182b4c035f21739.MainActivity
+RecordAudio.MainActivity;md5ac418dee2f4d3e75f182b4c035f21739.MainActivity
+recordaudio.MainActivity;md5ac418dee2f4d3e75f182b4c035f21739.MainActivity

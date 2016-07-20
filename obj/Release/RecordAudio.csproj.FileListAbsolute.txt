@@ -27,6 +27,5 @@ C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\android\assets\System.Runtime.Serialization.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\android\assets\System.Xml.dll.mdb
-C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\RecordAudio.csprojResolveAssemblyReference.cache
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Release\RavenRecord.dll.mdb
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\bin\Release\RavenRecord.dll.mdb

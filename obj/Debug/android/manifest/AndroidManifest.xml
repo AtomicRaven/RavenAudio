@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="RavenRecord.RavenRecord" android:installLocation="auto">
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <!--suppress UsesMinSdkAttributes-->
+  <uses-sdk android:minSdkVersion="11" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <application android:label="RavenRecord" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/ribbonmicpurple" android:debuggable="true">
-    <activity android:icon="@drawable/ribbonmicpurple" android:label="Raven Record" android:name="md5ac418dee2f4d3e75f182b4c035f21739.Activity1">
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <application android:label="RavenRecord" android:icon="@drawable/ribbonmicpurple" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
+      <intent-filter>
+        <!-- Change this to be db- followed by your app key -->
+        <data android:scheme="db-jzr2z55njfftkrm" />
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+    <activity android:label="PlayViewActivity" android:name="md51713ece041de583556237be29d20e52c.PlayViewActivity" />
+    <activity android:icon="@drawable/ribbonmicpurple" android:label="Raven Record" android:name="md5ac418dee2f4d3e75f182b4c035f21739.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -20,6 +32,4 @@
       </intent-filter>
     </receiver>
   </application>
-  <!--suppress UsesMinSdkAttributes-->
-  <uses-sdk android:minSdkVersion="11" />
 </manifest>

@@ -2,5 +2,8 @@
 <Paths>
   <ManifestDocuments />
   <NativeLibraries />
-  <Jars />
+  <Jars>
+    <Jar>obj\Debug\__library_projects__\Dropbox.CoreApi.Android\library_project_imports\dropbox-android-sdk-1.6.3.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Dropbox.CoreApi.Android\library_project_imports\json_simple-1.1.jar</Jar>
+  </Jars>
 </Paths>

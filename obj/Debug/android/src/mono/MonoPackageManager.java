@@ -99,6 +99,7 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "RavenRecord.dll" comes first in this list. */
 		"RavenRecord.dll",
+		"Dropbox.CoreApi.Android.dll",
 		"Java.Interop.dll",
 		"System.Threading.dll",
 		"System.Runtime.dll",

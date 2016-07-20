@@ -1,4 +1,5 @@
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\RavenRecord.dll
+C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\Dropbox.CoreApi.Android.dll
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\Java.Interop.dll
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\Mono.Android.dll
 C:\Users\rclarkson\Documents\Visual Studio 2015\Projects\RecordAudio\obj\Debug\android\assets\System.Core.dll

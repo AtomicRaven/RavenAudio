@@ -63,17 +63,29 @@ namespace RavenRecord
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int counter = 2131034114;
-			
-			// aapt resource value: 0x7f050003
-			public const int listView = 2131034115;
-			
 			// aapt resource value: 0x7f050000
-			public const int start = 2131034112;
+			public const int btnLink = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int counter = 2131034116;
 			
 			// aapt resource value: 0x7f050001
-			public const int stop = 2131034113;
+			public const int delete = 2131034113;
+			
+			// aapt resource value: 0x7f050006
+			public const int displayText = 2131034118;
+			
+			// aapt resource value: 0x7f050005
+			public const int listView = 2131034117;
+			
+			// aapt resource value: 0x7f050007
+			public const int pause = 2131034119;
+			
+			// aapt resource value: 0x7f050002
+			public const int start = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int stop = 2131034115;
 			
 			static Id()
 			{
@@ -91,6 +103,9 @@ namespace RavenRecord
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
 			
+			// aapt resource value: 0x7f030001
+			public const int PlayView = 2130903041;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -106,6 +121,15 @@ namespace RavenRecord
 			
 			// aapt resource value: 0x7f040000
 			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int clear_button = 2130968578;
+			
+			// aapt resource value: 0x7f040003
+			public const int image_list = 2130968579;
+			
+			// aapt resource value: 0x7f040001
+			public const int link_button = 2130968577;
 			
 			static String()
 			{
