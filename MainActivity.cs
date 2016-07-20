@@ -27,7 +27,7 @@ namespace RecordAudio
         // Visit the following link: https://www.dropbox.com/developers/apps
         public static string AppKey = "jzr2z55njfftkrm";
         public static string AppSecret = "isbk49be5e9wbhm";
-        public static string FolderPath = "/RavenRecord/";
+        public static string FolderPath = "";
         public static string PreferencesName = "Prefs";
     }
 
@@ -159,7 +159,7 @@ namespace RecordAudio
             recorder = new MediaRecorder();
             recorder.SetAudioSource(AudioSource.Mic);
             recorder.SetOutputFormat(OutputFormat.Mpeg4);
-            recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+            recorder.SetAudioEncoder(AudioEncoder.Aac);
             recorder.SetOutputFile(recordFolder + "/" + recordFile);
 
             recorder.SetMaxFileSize(0);
@@ -182,6 +182,7 @@ namespace RecordAudio
             recorder.Stop();
             recorder.Reset();
 
+            WriteFileToDropBox(recordFile);            
             RefreshFiles();
         }
 
@@ -299,6 +300,28 @@ namespace RecordAudio
 
         void GetFilesFromDropbox()
         {
+        }
+
+        protected async void WriteFileToDropBox(string fileName)
+        {
+            await Task.Factory.StartNew(() => UploadFile(fileName));
+        }
+
+        void UploadFile(string fileName)
+        {
+            using (var input = File.OpenRead(recordFolder + "/" + fileName))
+            {
+                //try
+                //{
+                    // Gets the local file and upload it to Dropbox
+                    DBApi.PutFile(DropboxCredentials.FolderPath + fileName, input, input.Length, null, null );
+                    
+                //}
+                //catch (NetworkOnMainThreadException ex)
+                //{                    
+                    //Toast.MakeText(this, ex.LocalizedMessage, ToastLength.Short).Show();
+                //}
+            }
         }
 
         protected async override void OnResume()
